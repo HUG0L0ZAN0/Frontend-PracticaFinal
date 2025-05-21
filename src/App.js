@@ -1,8 +1,10 @@
 // src/App.js
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage    from './components/LoginPage';
-import HomePage     from './components/HomePage';
-import PrivateRoute from './components/PrivateRoute';
+import LoginPage        from './components/LoginPage';
+import HomePage         from './components/HomePage';
+import ProfilePage      from './components/ProfilePage';
+import PrivateRoute     from './components/PrivateRoute';
+import ProtectedLayout  from './components/ProtectedLayout';
 import './App.css';
 
 function App() {
@@ -12,12 +14,26 @@ function App() {
         {/* Ruta pública */}
         <Route path="/login" element={<LoginPage />} />
 
-        {/* Ruta protegida: solo si hay token */}
+        {/* Ruta protegida: Home */}
         <Route
           path="/"
           element={
             <PrivateRoute>
-              <HomePage />
+              <ProtectedLayout>
+                <HomePage />
+              </ProtectedLayout>
+            </PrivateRoute>
+          }
+        />
+
+        {/* Ruta protegida: Mi Cuenta */}
+        <Route
+          path="/usuario"
+          element={
+            <PrivateRoute>
+              <ProtectedLayout>
+                <ProfilePage />
+              </ProtectedLayout>
             </PrivateRoute>
           }
         />

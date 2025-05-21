@@ -1,0 +1,87 @@
+.profile-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  }
+  
+  .profile-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .field label {
+    width: 90px;
+    font-weight: 600;
+  }
+  
+  .field span {
+    flex: 1;
+  }
+  
+  .field input {
+    flex: 1;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+
+  .delete-btn {
+    width: 100%;
+    padding: 10px;
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2rem;
+  }
+  
+  .delete-btn:hover {
+    background: #a71d2a;
+  }
+  
+  .loading {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  /* botón de editar campo */
+.edit-btn {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 8px;
+    font-size: 0.9rem;
+  }
+  .edit-btn:hover {
+    background: #0056b3;
+  }
+  
+  .logout-btn {
+    width: 100%;
+    padding: 10px;
+    background: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 1rem 0;
+  }
+  .logout-btn:hover {
+    background: #5a6268;
+  }
+  
