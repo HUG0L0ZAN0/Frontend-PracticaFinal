@@ -16,7 +16,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false --ci",
+    "lint": "eslint src --ext .js,.jsx",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -39,6 +40,8 @@
   },
   "devDependencies": {
     "ajv": "^6.12.6",
-    "ajv-keywords": "^3.5.2"
+    "ajv-keywords": "^3.5.2",
+    "eslint": "^9.27.0",
+    "eslint-config-react-app": "^7.0.1"
   }
 }
