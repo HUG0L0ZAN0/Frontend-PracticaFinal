@@ -6,27 +6,30 @@ import './LoginPage.css';
 export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError]       = useState('');      // <-- nuevo estado
+  const [error, setError]       = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async e => {
     e.preventDefault();
-    setError('');   // limpia errores previos
+    setError('');
 
-    const res = await fetch('http://localhost:3001/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
+    try {
+      const res = await fetch('http://localhost:3001/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
 
-    if (res.ok) {
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.message || 'Usuario o contraseña incorrectos');
+      }
+
       const { token } = await res.json();
       localStorage.setItem('token', token);
       navigate('/', { replace: true });
-    } else {
-      // captura el mensaje de error del backend o pon uno genérico
-      const body = await res.json().catch(() => ({}));
-      setError(body.message || 'Usuario o contraseña incorrectos');
+    } catch (err) {
+      setError(err.message);
     }
   };
 
@@ -34,6 +37,7 @@ export default function LoginPage() {
     <div className="login-container">
       <div className="login-box">
         <h3>Iniciar sesión</h3>
+
         <form onSubmit={handleLogin}>
           <div className="form-group">
             <label htmlFor="username">Usuario</label>
@@ -59,11 +63,23 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Aquí mostramos el error */}
           {error && <p className="error-message">{error}</p>}
 
-          <button type="submit">Entrar</button>
+          {/* Botón Entrar */}
+          <button type="submit" className="primary-btn">
+            Entrar
+          </button>
         </form>
+
+        {/* Botón Regístrate */}
+        <button
+          type="button"
+          className="primary-btn"
+          style={{ marginTop: '1rem' }}
+          onClick={() => navigate('/register')}
+        >
+          Regístrate
+        </button>
       </div>
     </div>
   );

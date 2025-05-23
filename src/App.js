@@ -1,20 +1,22 @@
 // src/App.js
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage        from './components/LoginPage';
-import HomePage         from './components/HomePage';
-import ProfilePage      from './components/ProfilePage';
-import PrivateRoute     from './components/PrivateRoute';
-import ProtectedLayout  from './components/ProtectedLayout';
-import './App.css';
+import LoginPage       from './components/LoginPage';
+import RegisterPage    from './components/RegisterPage';
+import HomePage        from './components/HomePage';
+import ProfilePage     from './components/ProfilePage';
+import PrivateRoute    from './components/PrivateRoute';
+import ProtectedLayout from './components/ProtectedLayout';
 
-function App() {
+export default function App() {
   return (
     <Router>
       <Routes>
-        {/* Ruta pública */}
-        <Route path="/login" element={<LoginPage />} />
+        {/* Rutas públicas */}
+        <Route path="/login"    element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
-        {/* Ruta protegida: Home */}
+        {/* Rutas protegidas */}
         <Route
           path="/"
           element={
@@ -25,8 +27,6 @@ function App() {
             </PrivateRoute>
           }
         />
-
-        {/* Ruta protegida: Mi Cuenta */}
         <Route
           path="/usuario"
           element={
@@ -37,9 +37,10 @@ function App() {
             </PrivateRoute>
           }
         />
+
+        {/* Si quieres, añade un catch-all que redirija al login o 404 */}
+        {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
       </Routes>
     </Router>
   );
 }
-
-export default App;
