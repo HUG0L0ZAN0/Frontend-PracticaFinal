@@ -14,9 +14,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --watchAll=false --ci",
+    "lint": "eslint src --ext .js,.jsx",
+    "eject": "react-scripts eject"
   },
+
+
   "eslintConfig": {
     "extends": [
       "react-app",
