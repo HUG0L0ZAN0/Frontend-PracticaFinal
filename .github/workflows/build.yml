@@ -23,12 +23,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install
+          npm install react-router-dom@6.22.3
           npm install --save-dev @testing-library/react @testing-library/jest-dom @testing-library/user-event
-          npm install react-router-dom
+          npm install
 
       - name: Run tests
-        run: npm test -- --watchAll=false --coverage
+        run: |
+          CI=false npm test -- --watchAll=false --coverage
 
       - name: Build production bundle
         run: npm run build
