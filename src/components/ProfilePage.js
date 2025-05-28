@@ -13,7 +13,7 @@ function decodeToken(token) {
 
 export default function ProfilePage() {
   const [user, setUser]           = useState(null);
-  const [editing, setEditing]     = useState(null); // 'username' o 'email'
+  const [editing, setEditing]     = useState(null); 
   const [tempValue, setTempValue] = useState('');
   const navigate = useNavigate();
   const inputRef = useRef();
