@@ -7,7 +7,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    name: Build and Deploy Frontend to Azure Static Web App
+    name: Deploy Frontend to Azure Static Web App
 
     steps:
       - name: Checkout code
