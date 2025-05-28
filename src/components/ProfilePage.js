@@ -15,6 +15,7 @@ export default function ProfilePage() {
   const [user, setUser]           = useState(null);
   const [editing, setEditing]     = useState(null); 
   const [tempValue, setTempValue] = useState('');
+  const [error, setError]         = useState(null);
   const navigate = useNavigate();
   const inputRef = useRef();
 
@@ -48,20 +49,25 @@ export default function ProfilePage() {
       email:    field === 'email'    ? tempValue : user.email
     };
 
-    const res = await fetch(`http://localhost:3001/api/usuarios/${user.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify(body)
-    });
+    try {
+      const res = await fetch(`http://localhost:3001/api/usuarios/${user.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+      });
 
-    if (res.ok) {
-      const updated = await res.json();
-      setUser(updated);
-    } else {
-      console.error('Error actualizando', field);
+      if (res.ok) {
+        const updated = await res.json();
+        setUser(updated);
+        setError(null);
+      } else {
+        setError(`Error al actualizar ${field}`);
+      }
+    } catch (err) {
+      setError(`Error al actualizar ${field}`);
     }
     setEditing(null);
   };
@@ -92,6 +98,7 @@ export default function ProfilePage() {
   return (
     <div className="profile-container">
       <h2>Mi Cuenta</h2>
+      {error && <p className="error-message">{error}</p>}
 
       {/* Campo ID */}
       <div className="field">
